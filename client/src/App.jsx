@@ -18,7 +18,7 @@ const App = () => {
   
 
   /*---- Handle Change Accounts ----*/ 
-  const handleChangeAccounts = async (accounts) => {
+  const handleAccountsChanged = async (accounts) => {
     if (accounts.length > 0 && account != accounts[0]) {
       setAccount(accounts[0])
     } else {
@@ -54,12 +54,12 @@ const App = () => {
 
     
     if (window.ethereum) {
-      window.ethereum.on("accountsChanged", handleChangeAccounts)
+      window.ethereum.on("accountsChanged", handleAccountsChanged)
     }
     
     return () => {
       if (window.ethereum) {
-        window.ethereum.removeListener("accountsChanged", handleChangeAccounts)
+        window.ethereum.removeListener("accountsChanged", handleAccountsChanged)
       }
     }
 
