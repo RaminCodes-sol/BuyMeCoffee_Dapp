@@ -43,12 +43,12 @@ describe('BuyMeCoffee', () => {
     })
     
     it("Should transfer Eth to the owner", async () => {
-      // one way to test
+      // one way to test this
       // const deployerBalanceBefore = await hre.ethers.provider.getBalance(deployer.address)
       // await buyMeCoffee.connect(patron).buyCoffee(patronName, patronMessage, { value: patronDonation })
       // expect(await hre.ethers.provider.getBalance(deployer.address)).to.be.greaterThan(deployerBalanceBefore)
 
-      // another way to test
+      // another way to test this
       await expect(buyMeCoffee.connect(patron).buyCoffee(patronName, patronMessage, { value: patronDonation })).to.changeEtherBalances([patron, deployer], [-patronDonation, patronDonation])
     })
 
@@ -63,12 +63,12 @@ describe('BuyMeCoffee', () => {
     it("Should return patrons", async () => {
       await buyMeCoffee.connect(patron).buyCoffee(patronName, patronMessage, { value: patronDonation })
 
-      const thePatron = await buyMeCoffee.patrons(0)
+      const firstPatron = await buyMeCoffee.patrons(0)
 
-      expect(thePatron.name).to.be.a("string").to.equal(patronName)
-      expect(thePatron.message).to.be.a("string").to.equal(patronMessage)
-      expect(Number(thePatron.time)).to.be.a("number").to.equal(await time.latest())
-      expect(thePatron.from).to.be.a("string").to.equal(patron.address)
+      expect(firstPatron.name).to.be.a("string").to.equal(patronName)
+      expect(firstPatron.message).to.be.a("string").to.equal(patronMessage)
+      expect(Number(firstPatron.time)).to.be.a("number").to.equal(await time.latest())
+      expect(firstPatron.from).to.be.a("string").to.equal(patron.address)
     })
   })
   
