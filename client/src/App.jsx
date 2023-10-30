@@ -73,7 +73,7 @@ const App = () => {
       {/*----- Header -----*/}
       <header className='text-center py-5 flex flex-col gap-7'>
         <h1 className='text-4xl text-orange-500'>Buy Me Coffee</h1>
-        <h1>Connected Account: {account}</h1>
+        <h1>{account ? `Connected Account: ${account}` : 'No Account Connected'}</h1>
       </header>
 
       {/*----- BuyCoffe -----*/}
