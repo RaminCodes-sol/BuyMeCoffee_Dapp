@@ -57,7 +57,7 @@ const BuyCoffee = ({ state, hasBought, setHasBought }) => {
 
             <button onClick={() => buyCoffee(name, message)} className='px-5 py-4 text-2xl flex justify-center items-center bg-blue-500 transition-colors hover:bg-blue-600'>
                 {
-                    hasBought ?  <span className='text-sm'>Processing...</span> : <PiCoffeeFill />
+                    hasBought ? <span className='text-sm'>Processing...</span> : <PiCoffeeFill />
                 }
             </button>
             
