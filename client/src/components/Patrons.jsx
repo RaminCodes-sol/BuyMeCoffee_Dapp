@@ -26,6 +26,7 @@ const Patrons = ({ state, hasBought }) => {
       }
     } catch(error) {
       console.log("Error:", error.message)
+      setPatrons([])
     }
   }
 
