@@ -28,7 +28,7 @@ describe('BuyMeCoffee', () => {
   /*------- Buying Coffee -------*/
   describe('Buying Coffee', () => {
     it("Should fail if msg.value is 0", async () => {
-      await expect(buyMeCoffee.connect(patron).buyCoffee("Alex", "You will be a rich man soon", {value: hre.ethers.parseEther("0")})).to.be.revertedWith("Please pay more than 0")
+      await expect(buyMeCoffee.connect(patron).buyCoffee(patronName, patronMessage, {value: hre.ethers.parseEther("0")})).to.be.revertedWith("Please pay more than 0")
     })
 
     it("Should add new patron", async () => {
@@ -43,11 +43,13 @@ describe('BuyMeCoffee', () => {
     })
     
     it("Should transfer Eth to the owner", async () => {
-      const deployerBalanceBefore = await hre.ethers.provider.getBalance(deployer.address)
+      // one way to test
+      // const deployerBalanceBefore = await hre.ethers.provider.getBalance(deployer.address)
+      // await buyMeCoffee.connect(patron).buyCoffee(patronName, patronMessage, { value: patronDonation })
+      // expect(await hre.ethers.provider.getBalance(deployer.address)).to.be.greaterThan(deployerBalanceBefore)
 
-      await buyMeCoffee.connect(patron).buyCoffee(patronName, patronMessage, { value: patronDonation })
-
-      expect(await hre.ethers.provider.getBalance(deployer.address)).to.be.greaterThan(deployerBalanceBefore)
+      // another way to test
+      await expect(buyMeCoffee.connect(patron).buyCoffee(patronName, patronMessage, { value: patronDonation })).to.changeEtherBalances([patron, deployer], [-patronDonation, patronDonation])
     })
 
 
